@@ -1,13 +1,15 @@
 import javax.xml.soap.*;
 import javax.xml.transform.stream.StreamSource;
 import java.io.StringReader;
+import java.sql.Connection;
 import javax.xml.transform.*;
 
 public class SoapMainClient {
 
     public static void main(String[] args) {
    DbFunctions db= new DbFunctions();
-   db.connect_to_db("SoapAPIDB","postgres","980126");
+   Connection conn = db.connect_to_db("SoapAPIDB","postgres","980126");
+   db.createTable(conn,"Calculation1");
         //     SOAPConnector.connection();
 /*
         String a = "20";

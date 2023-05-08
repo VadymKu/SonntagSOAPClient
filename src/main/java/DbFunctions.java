@@ -25,10 +25,16 @@ public class DbFunctions {
         Statement statement;
         try {
             // Creating an Table with Serial (Serial auto incrementation)
-            String query = "create table" + table_name + "(calculations SERIAL,function varchar(50),first_Number ";
+            String query = "CREATE TABLE " + table_name + " (calculations SERIAL,function varchar(50),firstNumber float8,secondNumber float8,result float8)";
+            statement=conn.createStatement();
+            statement.executeUpdate(query);
+            System.out.println("Table created");
         } catch (Exception e) {
             System.out.println("Error");
         }
+    }
+    public void insert_row(Connection conn,String function,float firstNumber,float secondNumber,float result){
+
     }
 
 }
