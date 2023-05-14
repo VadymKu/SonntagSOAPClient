@@ -6,14 +6,18 @@ import javax.xml.transform.*;
 
 public class SOAPConnector {
 
-    public static void connection() {
+    public static String[] connection() {
         Scanner myObj = new Scanner(System.in);
+        String[] returnValue = new String[4];
         System.out.println("Welche Mathematische Funktion wollen sie verwänden? (Auswahl: Add,Subtract,Divide,Multiply): ");
         String userInput = myObj.nextLine();
-        System.out.println("Erste Zahl eingabe: ");
+        returnValue[0] = userInput;
+        System.out.println("Erste Ganze Zahl eingabe: ");
         String a = myObj.nextLine();
-        System.out.println("Zweite Zahl eingabe 2: ");
+        returnValue[1] = a;
+        System.out.println("Zweite Ganze Zahl eingabe 2: ");
         String b = myObj.nextLine();
+        returnValue[2] = b;
         try {
 
             // Erstellt eine neue Instanz um eine Verbindung mit dem SOAP-Wbeservice herzustellen.
@@ -42,17 +46,20 @@ public class SOAPConnector {
             // Get Element by Tag name muss geändert werden jedes mal lösung finden
             String response = soapResponseBody.getElementsByTagName(userInput+"Result").item(0).getTextContent();
 
+            returnValue[3] = response;
             // Verbindung zum Webservice schließen
             soapConnection.close();
 
+
             // Antwort verarbeiten
             System.out.println("Response: " + response);
-
+            return returnValue;
 
         } catch (Exception e) {
             System.err.println("Error occurred while sending SOAP Request to Server");
             e.printStackTrace();
         }
+        return null;
     }
 
 

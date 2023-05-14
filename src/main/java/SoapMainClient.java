@@ -8,9 +8,17 @@ public class SoapMainClient {
 
     public static void main(String[] args) {
    DbFunctions db= new DbFunctions();
-   Connection conn = db.connect_to_db("SoapAPIDB","postgres","980126");
-   db.createTable(conn,"Calculation1");
-        //     SOAPConnector.connection();
+   //Connection conn = db.connect_to_db("SoapAPIDB","postgres","980126");
+   //db.createTable("SoapAPIDB","postgres","980126","Calculation1");
+   //db.insert_row("SoapAPIDB","postgres","980126","Calculation1","Add",3,4,7);
+   String[] dbData = SOAPConnector.connection();
+   int[] arrInt = new int[3];
+   int j = 0;
+   for(int i = 1;i < 4;i++){
+       arrInt[j] = Integer.parseInt(dbData[i]);
+       j++;
+        }
+   db.insert_row("SoapAPIDB","postgres","980126","Calculation1",dbData[0],arrInt[0],arrInt[1],arrInt[2]);
 /*
         String a = "20";
         String b = "3";
